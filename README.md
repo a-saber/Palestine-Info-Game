@@ -1,16 +1,34 @@
-# word_game
+# Palestine Puzzle App
 
-A new Flutter project.
+Welcome to the Palestine Puzzle App, a Flutter-based application designed to offer an engaging and educational experience about Palestine. This project features a range of questions covering general knowledge about Palestine, making learning fun and interactive.
 
-## Getting Started
+## Features
+- **Educational Questions:** A variety of questions covering general knowledge about Palestine.
+- **Engaging Gameplay:** Interactive and fun way to learn about Palestine.
+- **User-Friendly Interface:** Simple and intuitive UI/UX design.
+- **Cross-Platform:** Runs smoothly on both Android and iOS devices.
 
-This project is a starting point for a Flutter application.
+## Usage
+1. Open the app on your device.
+2. Navigate through different questions about Palestine.
+3. Answer questions and learn more about the rich history and culture of Palestine.
+4. Enjoy the interactive experience and test your knowledge.
 
-A few resources to get you started if this is your first Flutter project:
+## Installation
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### Prerequisites
+- Flutter SDK: [Flutter installation guide](https://flutter.dev/docs/get-started/install)
+- Dart SDK: Included with Flutter
+- Visual Studio Code [Download VS code](https://code.visualstudio.com/)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Steps
+1. **Clone the repository**
+
+2. **Install dependencies:**
+    ```bash
+    flutter pub get
+    ```
+3. **Run the app:**
+    ```bash
+    flutter run
+    ```
