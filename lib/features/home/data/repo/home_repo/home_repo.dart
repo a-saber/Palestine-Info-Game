@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 
-import 'package:word_game/core/models/question_group.dart';
+import 'package:word_game/features/home/data/models/cache_model.dart';
 
 abstract class HomeRepo {
-  Future<Either<String, QuestionGroup?>> getGroup();
+  Future<Either<String, CacheModel>> initCachData();
 }

@@ -4,7 +4,7 @@ enum SquareStatus {
   deleteButton,
   suggestButton,
   sampleUnChosen,
-  sampleChosen
+  sampleChosen,
 }
 
 class ConstantManager {

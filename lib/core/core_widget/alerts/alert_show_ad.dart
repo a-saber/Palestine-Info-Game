@@ -16,7 +16,7 @@ AlertDialog alertShowAd(void Function()? onTap) => AlertDialog(
           return Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
-              border: Border.all(color: ColorsManager.secondColor, width: 3.0),
+              border: Border.all(color: ColorsManager.grey, width: 3.0),
               color: ColorsManager.green,
             ),
             padding:
@@ -32,9 +32,8 @@ AlertDialog alertShowAd(void Function()? onTap) => AlertDialog(
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: height > 600 ? 33 : height * 0.04,
-                    color: ColorsManager.secondColor,
+                    color: ColorsManager.grey,
                     fontWeight: FontWeight.bold,
-                    fontFamily: 'Title',
                   ),
                 ),
                 const SizedBox(
@@ -46,18 +45,18 @@ AlertDialog alertShowAd(void Function()? onTap) => AlertDialog(
                       child: Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
-                          color: ColorsManager.textAnswerColor,
-                          border: Border.all(
-                              color: ColorsManager.secondColor, width: 3.0),
+                          color: ColorsManager.green,
+                          border:
+                              Border.all(color: ColorsManager.grey, width: 3.0),
                         ),
                         child: MaterialButton(
                           onPressed: onTap,
                           child: const Text("حسنا",
                               style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 17,
-                                  fontWeight: FontWeight.bold,
-                                  fontFamily: 'Title')),
+                                color: Colors.white,
+                                fontSize: 17,
+                                fontWeight: FontWeight.bold,
+                              )),
                         ),
                       ),
                     ),
@@ -68,9 +67,9 @@ AlertDialog alertShowAd(void Function()? onTap) => AlertDialog(
                       child: Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
-                          color: ColorsManager.textAnswerColor,
-                          border: Border.all(
-                              color: ColorsManager.secondColor, width: 3.0),
+                          color: ColorsManager.green,
+                          border:
+                              Border.all(color: ColorsManager.grey, width: 3.0),
                         ),
                         child: MaterialButton(
                           onPressed: () {

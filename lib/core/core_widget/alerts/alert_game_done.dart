@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../features/home/presentation/views/home_view.dart';
 import '../../resources_manager/colors_manager.dart';
@@ -13,7 +14,7 @@ AlertDialog alertGameDone(context) => AlertDialog(
         var width = MediaQuery.of(context).size.width;
         return Container(
           decoration: BoxDecoration(
-              color: ColorsManager.alertBack,
+              color: ColorsManager.white,
               borderRadius: BorderRadius.circular(30)),
           padding:
               EdgeInsets.symmetric(vertical: height * 0.02, horizontal: 20),
@@ -42,14 +43,7 @@ AlertDialog alertGameDone(context) => AlertDialog(
                 ),
                 child: MaterialButton(
                   onPressed: () {
-                    // goTo(const HomeView());
-                    Navigator.pushAndRemoveUntil(
-                        context,
-                        MaterialPageRoute(
-                            builder: (BuildContext context) =>
-                                const HomeView()), (route) {
-                      return false;
-                    });
+                    Get.off(const HomeView());
                   },
                   child: Text("القائمة الرئيسية",
                       style: TextStyle(

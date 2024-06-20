@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../../manager/app_cubit.dart';
 import '../../resources_manager/colors_manager.dart';
 
 AlertDialog alertQuestionDone(context) => AlertDialog(
@@ -38,10 +37,8 @@ AlertDialog alertQuestionDone(context) => AlertDialog(
                   color: ColorsManager.green,
                 ),
                 child: MaterialButton(
-                  onPressed: () {
-                    AppCubit.get(context).levelUp().then((value) {
-                      Navigator.pop(context);
-                    });
+                  onPressed: () async {
+                    Navigator.pop(context);
                   },
                   child: Text("متابعة",
                       style: TextStyle(

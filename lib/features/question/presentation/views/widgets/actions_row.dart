@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:word_game/features/home/presentation/views/widgets/email_view_body.dart';
-import 'package:word_game/features/question/presentation/views/widgets/rewardedAd.dart';
+import 'package:get/get.dart';
+import 'package:get/get_navigation/get_navigation.dart';
+import 'package:word_game/core/resources_manager/delay_manager.dart';
 
-import '../../../../../core/core_widget/navigate.dart';
 import '../../../../../core/resources_manager/colors_manager.dart';
 import '../../../../home/presentation/views/widgets/coins_view_body.dart';
 
@@ -16,7 +16,7 @@ class ActionsRow extends StatelessWidget {
       children: [
         TextButton(
             onPressed: () {
-              goTo(EmailView());
+              //goTo(EmailView());
             },
             child: Row(
               children: [
@@ -35,11 +35,12 @@ class ActionsRow extends StatelessWidget {
                 ),
               ],
             )),
-        //const Expanded(child:  RewardedAdd()),
         const Expanded(child: SizedBox()),
         TextButton(
             onPressed: () {
-              goTo(Coins());
+              Get.to(const Coins(),
+                  duration: const Duration(milliseconds: 500),
+                  transition: DelayManager.rightToLeft);
             },
             child: Row(
               children: [

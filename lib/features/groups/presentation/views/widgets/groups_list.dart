@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_iconly/flutter_iconly.dart';
-import 'package:word_game/core/core_widget/default_group_button.dart';
-import 'package:word_game/core/local/cache_helper_keys.dart';
-import 'package:word_game/core/manager/app_cubit.dart';
-import 'package:word_game/core/manager/app_states.dart';
-
-import '../../../../../core/core_widget/default_button.dart';
-import '../../../../question/presentation/views/question_view.dart';
+import 'package:word_game/core/core_widget/default_error.dart';
+import 'package:word_game/core/core_widget/default_loading.dart';
+import 'package:word_game/core/resources_manager/colors_manager.dart';
+import 'package:word_game/core/resources_manager/style_manager.dart';
+import 'package:word_game/features/groups/presentation/views/widgets/group_list_item_builder.dart';
+import 'package:word_game/features/groups/presentation/cubit/get_group_cubit/get_group_cubit.dart';
+import 'package:word_game/features/groups/presentation/cubit/get_group_cubit/get_group_state.dart';
 
 class GroupsList extends StatefulWidget {
-  const GroupsList({Key? key}) : super(key: key);
+  const GroupsList({super.key});
 
   @override
   State<GroupsList> createState() => _GroupsListState();
@@ -36,42 +35,41 @@ class _GroupsListState extends State<GroupsList>
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<AppCubit, AppStates>(
+    return BlocConsumer<GetGroupCubit, GetGroupState>(
         builder: (context, state) {
-          return Expanded(
-            child: ListView.separated(
-              physics: const BouncingScrollPhysics(),
-              padding: const EdgeInsets.all(0.0),
-              itemBuilder: (context, int index) {
-                return Transform.scale(
-                  scale: CacheHelperKeys.collectionIndex == index ? scale : 1,
-                  origin: const Offset(50, 50),
-                  child: DefaultGroupButton(
-                    function: CacheHelperKeys.collectionIndex == index
-                        ? () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (BuildContext context) =>
-                                      const QuestionView()),
-                            );
-                          }
-                        : null,
-                    text: "المجموعة" + "    " + (index + 1).toString(),
-                    width: 400,
-                    radius: 10.0,
-                    icon: IconlyLight.star,
-                    sizeIcon: 20.0,
-                    isGroup: true,
-                    groupIndex: index,
+          Widget result;
+
+          if (state is GetGroupLoadingState) {
+            result = const DefaultLoading();
+          } else if (state is GetGroupErrorState) {
+            result = Expanded(child: DefaultError(error: state.error));
+          } else if (state is GetGroupSuccessState ||
+              state is GetGroupAllDoneState) {
+            result = Expanded(
+              child: Column(
+                children: [
+                  if (state is GetGroupAllDoneState)
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 20.0),
+                      child: Text(
+                        'لقد اتممت جميع مراحل الاسئلة\nانتظر مزيد من الاسئلة في تحديثات قادمة\n ان شاء الله',
+                        textAlign: TextAlign.center,
+                        style: StyleManager.bold
+                            .copyWith(color: ColorsManager.green, fontSize: 25),
+                      ),
+                    ),
+                  GroupListItemBuilder(
+                    scale: scale,
+                    isAllDone: state is GetGroupAllDoneState,
                   ),
-                );
-              },
-              separatorBuilder: (context, int index) =>
-                  const SizedBox(height: 8.0),
-              itemCount: AppCubit.get(context).collections.length,
-            ),
-          );
+                ],
+              ),
+            );
+          } else {
+            result = const SizedBox();
+          }
+
+          return result;
         },
         listener: (context, state) {});
   }
@@ -85,7 +83,6 @@ class _GroupsListState extends State<GroupsList>
         setState(() {
           scale = _animation.value;
         });
-        print(_animation.value);
       });
     _controller.repeat(reverse: true);
   }

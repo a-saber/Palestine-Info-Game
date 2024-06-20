@@ -1,88 +1,94 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:word_game/core/local/cache_helper_keys.dart';
-
-import '../../../../../core/manager/app_cubit.dart';
-import '../../../../../core/manager/app_states.dart';
+import 'package:word_game/features/question/data/models/que_up_response.dart';
+import 'package:word_game/features/question/presentation/cubit/edit_coins_cubit/edit_coins_cubit.dart';
+import 'package:word_game/features/question/presentation/cubit/que_up_cubit/que_up_cubit.dart';
+import 'package:word_game/features/question/presentation/cubit/question_ui_cubit/question_ui_cubit.dart';
+import 'package:word_game/features/question/presentation/cubit/question_ui_cubit/question_ui_state.dart';
 import '../../../../../core/resources_manager/colors_manager.dart';
 import '../../../../../core/resources_manager/constant_manager.dart';
 import 'custom_square.dart';
 
 class AnswerChecker extends StatelessWidget {
-  const AnswerChecker({Key? key}) : super(key: key);
+  const AnswerChecker({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<AppCubit, AppStates>(
+    return BlocConsumer<QuestionUICubit, QuestionUIState>(
         builder: (context, state) {
-          return Stack(
-            alignment: Alignment.center,
-            children: [
-              Container(
-                height: 50,
-                decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(30.0),
-                      topRight: Radius.circular(30.0)),
-                  color: AppCubit.get(context).answered == null
-                      ? ColorsManager.grey
-                      : AppCubit.get(context).answered!
-                          ? ColorsManager.green
-                          : ColorsManager.red,
-                ),
-              ),
-              Center(
-                child: SizedBox(
-                  height: 35,
-                  child: ListView.builder(
-                      reverse: true,
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      scrollDirection: Axis.horizontal,
-                      itemCount: AppCubit.get(context)
-                          .collections[CacheHelperKeys.collectionIndex!]
-                          .questions[CacheHelperKeys.questionIndex!]
-                          .answer
-                          .length,
-                      itemBuilder: (context, index) {
-                        return Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            InkWell(
-                                onTap:
-                                    index >= AppCubit.get(context).value.length
-                                        ? null
-                                        : () {
-                                            AppCubit.get(context)
-                                                .answerOnTab(index);
-                                          },
-                                child: index >=
-                                        AppCubit.get(context).value.length
-                                    ? CustomSquare(
+      return Stack(
+        alignment: Alignment.center,
+        children: [
+          Container(
+            height: 50,
+            decoration: BoxDecoration(
+              borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(30.0),
+                  topRight: Radius.circular(30.0)),
+              color: QuestionUICubit.get(context).correctAnswer == null
+                  ? ColorsManager.grey
+                  : QuestionUICubit.get(context).correctAnswer!
+                      ? ColorsManager.green
+                      : ColorsManager.red,
+            ),
+          ),
+          Center(
+            child: SizedBox(
+              height: 35,
+              child: ListView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  scrollDirection: Axis.horizontal,
+                  itemCount:
+                      QuestionUICubit.get(context).question!.answer.length,
+                  itemBuilder: (context, index) {
+                    return Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        InkWell(
+                            onTap: index >=
+                                    QuestionUICubit.get(context)
+                                        .userInput
+                                        .length
+                                ? null
+                                : () {
+                                    QuestionUICubit.get(context)
+                                        .answerOnTab(indexInAnswer: index);
+                                  },
+                            child: index >=
+                                    QuestionUICubit.get(context)
+                                        .userInput
+                                        .length
+                                ? const CustomSquare(
+                                    squareStatus: SquareStatus.answerEmpty)
+                                : QuestionUICubit.get(context)
+                                            .userInput[index] ==
+                                        null
+                                    ? const CustomSquare(
                                         squareStatus: SquareStatus.answerEmpty)
-                                    : AppCubit.get(context).value[index] == null
-                                        ? CustomSquare(
-                                            squareStatus:
-                                                SquareStatus.answerEmpty)
-                                        : CustomSquare(
-                                            squareStatus:
-                                                SquareStatus.answerFull,
-                                            text: AppCubit.get(context)
-                                                .value[index]!
-                                                .char,
-                                          )),
-                            const SizedBox(
-                              width: 5.0,
-                            )
-                          ],
-                        );
-                      }),
-                ),
-              )
-            ],
-          );
-        },
-        listener: (context, state) {});
+                                    : CustomSquare(
+                                        squareStatus: SquareStatus.answerFull,
+                                        text: QuestionUICubit.get(context)
+                                            .userInput[index]!
+                                            .char,
+                                      )),
+                        const SizedBox(
+                          width: 5.0,
+                        )
+                      ],
+                    );
+                  }),
+            ),
+          )
+        ],
+      );
+    }, listener: (context, state) async {
+      if (state is AnswerSuccessState) {
+        await QueUpCubit.get(context).questionUp();
+        await EditCoinsCubit.get(context)
+            .editCoins(editCoinsType: EditCoinsType.question);
+      }
+    });
   }
 }

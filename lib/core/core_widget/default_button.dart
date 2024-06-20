@@ -1,10 +1,48 @@
 import 'package:flutter/material.dart';
-import 'package:word_game/core/local/cache_helper_keys.dart';
+import 'package:word_game/core/resources_manager/style_manager.dart';
 
 import '../resources_manager/colors_manager.dart';
 
 class DefaultButton extends StatelessWidget {
-  DefaultButton({
+  const DefaultButton(
+      {super.key,
+      this.onPressed,
+      required this.text,
+      this.disableColored = false});
+
+  final void Function()? onPressed;
+  final String text;
+  final bool disableColored;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10.0),
+      child: SizedBox(
+        width: double.infinity,
+        child: MaterialButton(
+          onPressed: onPressed,
+          disabledColor:
+              disableColored ? ColorsManager.green : ColorsManager.grey,
+          color: ColorsManager.green,
+          padding: const EdgeInsets.all(10),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+          child: Text(
+            text,
+            textAlign: TextAlign.center,
+            style: StyleManager.medium
+                .copyWith(color: ColorsManager.white, fontSize: 20),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/*
+class DefaultButton extends StatelessWidget {
+  const DefaultButton({
     super.key,
     this.groupIndex = 0,
     this.isGroup = false,
@@ -24,25 +62,23 @@ class DefaultButton extends StatelessWidget {
     this.mainAxisAlignment = MainAxisAlignment.start,
   });
 
-  int groupIndex;
-  bool isGroup;
-  IconData? icon;
-  void Function()? function;
+  final int groupIndex;
+  final bool isGroup;
+  final IconData? icon;
+  final void Function()? function;
   final String text;
-  double width;
-  double height;
-  double sizeIcon;
-  double sizefont;
-  Color colortext;
+  final double width;
+  final double height;
+  final double sizeIcon;
+  final double sizefont;
+  final Color colortext;
+  final Color coloricon;
+  final Color colorbutton;
 
-  Color coloricon;
-
-  Color colorbutton;
-
-  MainAxisAlignment mainAxisAlignment;
-  double radius;
-  double paddingLeft;
-  double paddingRight;
+  final MainAxisAlignment mainAxisAlignment;
+  final double radius;
+  final double paddingLeft;
+  final double paddingRight;
 
   @override
   Widget build(BuildContext context) {
@@ -56,13 +92,13 @@ class DefaultButton extends StatelessWidget {
           child: Container(
             width: width,
             height: height,
-            padding: EdgeInsets.all(5),
+            padding: const EdgeInsets.all(5),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(
                 radius,
               ),
               color: isGroup
-                  ? CacheHelperKeys.collectionIndex! >= groupIndex
+                  ? CacheData.collectionIndex! >= groupIndex
                       ? Colors.amber
                       : ColorsManager.green
                   : ColorsManager.green,
@@ -91,7 +127,7 @@ class DefaultButton extends StatelessWidget {
     );
   }
 }
-
+*/
 
 /*
 isGroup

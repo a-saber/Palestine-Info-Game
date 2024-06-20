@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../manager/app_cubit.dart';
+import 'package:word_game/core/resources_manager/style_manager.dart';
+import 'package:word_game/features/question/presentation/cubit/restart_cubit/restart_cubit.dart';
 import '../../resources_manager/colors_manager.dart';
 
 AlertDialog alertRestart(context) => AlertDialog(
@@ -16,8 +17,7 @@ AlertDialog alertRestart(context) => AlertDialog(
           return Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
-              border: Border.all(color: ColorsManager.secondColor, width: 3.0),
-              color: ColorsManager.green,
+              color: ColorsManager.white,
             ),
             padding:
                 EdgeInsets.symmetric(vertical: height * 0.005, horizontal: 10),
@@ -28,13 +28,9 @@ AlertDialog alertRestart(context) => AlertDialog(
               children: [
                 Text(
                   'هل تريد اعادة تشغيل اللعبة ؟',
-                  textDirection: TextDirection.rtl,
                   textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: height > 600 ? 33 : height * 0.04,
-                    color: ColorsManager.secondColor,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'Title',
+                  style: StyleManager.medium.copyWith(
+                    fontSize: 25,
                   ),
                 ),
                 const SizedBox(
@@ -48,22 +44,17 @@ AlertDialog alertRestart(context) => AlertDialog(
                           borderRadius: BorderRadius.circular(10),
                           // color:ColorsManager.textAnswerColor,
                           color: Colors.red,
-
-                          border: Border.all(
-                              color: ColorsManager.secondColor, width: 3.0),
                         ),
                         child: MaterialButton(
                           onPressed: () {
-                            AppCubit.get(context).restartGame().then((value) {
-                              Navigator.pop(context);
-                            });
+                            RestartCubit.get(context).restart();
+                            Navigator.pop(context);
                           },
-                          child: const Text("نعم",
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 19,
-                                  fontWeight: FontWeight.bold,
-                                  fontFamily: 'Title')),
+                          child: Text("نعم",
+                              style: StyleManager.medium.copyWith(
+                                color: Colors.white,
+                                fontSize: 19,
+                              )),
                         ),
                       ),
                     ),
@@ -74,20 +65,18 @@ AlertDialog alertRestart(context) => AlertDialog(
                       child: Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
-                          color: ColorsManager.textAnswerColor,
-                          border: Border.all(
-                              color: ColorsManager.secondColor, width: 3.0),
+                          color: ColorsManager.green,
                         ),
                         child: MaterialButton(
                           onPressed: () {
                             Navigator.pop(context);
                           },
-                          child: const Text(
+                          child: Text(
                             "لا",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 19,
-                                fontWeight: FontWeight.bold),
+                            style: StyleManager.medium.copyWith(
+                              color: Colors.white,
+                              fontSize: 19,
+                            ),
                           ),
                         ),
                       ),
