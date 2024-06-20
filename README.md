@@ -8,6 +8,12 @@ Welcome to the Palestine Puzzle App, a Flutter-based application designed to off
 - **User-Friendly Interface:** Simple and intuitive UI/UX design.
 - **Cross-Platform:** Runs smoothly on both Android and iOS devices.
 
+![Home](screenshots/home.jpeg)
+![Home](screenshots/groups.jpeg)
+![Home](screenshots/que.jpeg)
+![Home](screenshots/coins.jpeg)
+![Home](screenshots/coins2.jpeg)
+
 ## Usage
 
 ### APK: [download from here](https://drive.google.com/file/d/1QYUNFgkA6IlrrqZQnbw3tQPfggiLDI88/view?usp=drive_link)
