@@ -9,6 +9,8 @@ Welcome to the Palestine Puzzle App, a Flutter-based application designed to off
 - **Cross-Platform:** Runs smoothly on both Android and iOS devices.
 
 ## Usage
+
+### APK: [download from here](https://drive.google.com/file/d/1QYUNFgkA6IlrrqZQnbw3tQPfggiLDI88/view?usp=drive_link)
 1. Open the app on your device.
 2. Navigate through different questions about Palestine.
 3. Answer questions and learn more about the rich history and culture of Palestine.
