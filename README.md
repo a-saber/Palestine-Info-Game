@@ -2,8 +2,8 @@
 
 Welcome to the Palestine Puzzle App, a Flutter-based application designed to offer an engaging and educational experience about Palestine. This project features a range of questions covering general knowledge about Palestine, making learning fun and interactive.
 
-# Video Demo
-[![Watch the video](screenshots/home.jpeg)]([screenshots/record.mp4](https://youtu.be/zJp3S5OVMQk))
+# Video Demo 
+[![Watch the video](screenshots/home.jpeg)](https://youtu.be/zJp3S5OVMQk)
 
 ## Features
 - **Educational Questions:** A variety of questions covering general knowledge about Palestine.
