@@ -1,14 +1,8 @@
-
-
-
-https://github.com/a-saber/Palestine-Info-Game/assets/103177904/67767c4d-1b01-4b9f-a1aa-984061b89c6f
-
-
 # Palestine Puzzle App
 
 Welcome to the Palestine Puzzle App, a Flutter-based application designed to offer an engaging and educational experience about Palestine. This project features a range of questions covering general knowledge about Palestine, making learning fun and interactive.
 
-### APK: [download from here](https://drive.google.com/file/d/1QYUNFgkA6IlrrqZQnbw3tQPfggiLDI88/view?usp=drive_link)
+https://github.com/a-saber/Palestine-Info-Game/assets/103177904/67767c4d-1b01-4b9f-a1aa-984061b89c6f
 
 ## Features
 - **Educational Questions:** A variety of questions covering general knowledge about Palestine.
@@ -23,6 +17,8 @@ Welcome to the Palestine Puzzle App, a Flutter-based application designed to off
 ![Home](screenshots/coins2.jpeg)
 
 ## Usage
+
+### APK: [download from here](https://drive.google.com/file/d/1QYUNFgkA6IlrrqZQnbw3tQPfggiLDI88/view?usp=drive_link)
 
 1. Open the app on your device.
 2. Navigate through different questions about Palestine.
