@@ -1,6 +1,8 @@
 
 
-https://github.com/a-saber/Palestine-Info-Game/assets/103177904/3b489fcb-597f-439d-9451-26371534111a
+
+https://github.com/a-saber/Palestine-Info-Game/assets/103177904/67767c4d-1b01-4b9f-a1aa-984061b89c6f
+
 
 # Palestine Puzzle App
 
